@@ -358,7 +358,6 @@ const App = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="bg-gray-800 rounded-lg p-8">
-                <h3 className="text-2xl font-bold mb-6">Ready to collaborate?</h3>
                 <p className="text-gray-300 mb-8 leading-relaxed">
                   I'm actively seeking opportunities in data engineering roles where I can apply my 
                   cloud-native skills and continue growing in the field of big data and analytics.
