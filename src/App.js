@@ -400,7 +400,7 @@ const App = () => {
       <footer className="py-8 bg-gray-900 border-t border-gray-700">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-gray-400">
-            © 2025 Parth. Built with React & deployed on Vercel.
+            © 2025 Parth.
           </p>
         </div>
       </footer>
