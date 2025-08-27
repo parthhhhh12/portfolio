@@ -19,7 +19,7 @@ const App = () => {
   };
 
   const skills = [
-    { name: 'Python', proficiency: 'Advanced', description: '3+ years experience', color: 'bg-blue-500', dots: 5 },
+    { name: 'Python', proficiency: 'Advanced', description: '2+ years experience', color: 'bg-blue-500', dots: 5 },
     { name: 'PySpark', proficiency: 'Intermediate', description: 'Production experience', color: 'bg-orange-500', dots: 4 },
     { name: 'Microsoft Azure', proficiency: 'Intermediate', description: 'Certified practitioner', color: 'bg-cyan-500', dots: 4 },
     { name: 'Databricks', proficiency: 'Intermediate', description: 'Hands-on projects', color: 'bg-red-500', dots: 4 },
