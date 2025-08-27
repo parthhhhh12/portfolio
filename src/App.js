@@ -102,7 +102,7 @@ const App = () => {
             Parth
           </h1>
           <h2 className="text-2xl md:text-3xl mb-6 text-blue-300">
-            Aspiring Data Engineer
+            Associate Data Engineer
           </h2>
           <p className="text-lg mb-8 text-gray-300 max-w-2xl mx-auto">
             Specialized in Azure | Databricks | Python | SQL | PySpark
