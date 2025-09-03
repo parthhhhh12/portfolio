@@ -30,22 +30,24 @@ const App = () => {
   ];
 
   const projects = [
-    {
-      title: "End-to-End Data Engineering Pipeline with Medallion Architecture",
-      duration: "Self-Project",
-      client: "Personal Development",
-      description: "Built a complete data engineering pipeline on Databricks to ingest raw data, clean and transform it, and prepare it for BI reporting following medallion architecture for business decision making.",
-      tech: ["Databricks", "Delta Live Tables", "Delta Lake", "Azure Data Lake Storage Gen2", "Power BI", "Python"],
-      highlights: [
-        "Implemented complete medallion architecture (Bronze, Silver, Gold layers)",
-        "Processed Superstore sales dataset with 18 columns and 10,000+ records from Kaggle",
-        "Built automated data pipeline for cleaning and transforming raw CSV data",
-        "Created comprehensive Power BI reports analyzing sales by segments and top customers",
-        "Analyzed delivery speed impact on total sales using advanced analytics functions",
-        "Utilized Delta Lake for reliable and scalable data storage with ACID compliance"
-      ],
-      businessObjective: "To clean and transform source dataset stored in silver layer following medallion architecture and create analysis for total sales by segments, top customers, and delivery speed impact on sales."
-    },
+  {
+  title: "Batch ETL Pipeline using PySpark on Azure Databricks",
+  duration: "Self-Project",
+  client: "Personal Development",
+  description: "Built and deployed a batch ETL pipeline on Azure Databricks to process raw NYC Taxi Trip data, clean and transform it, and store the results in Parquet format on Azure Blob Storage for analytics and reporting.",
+  tech: ["Azure Databricks", "PySpark", "Azure Blob Storage", "Parquet", "DBML"],
+  highlights: [
+    "Implemented an end-to-end ETL pipeline with ingestion, transformation, and aggregation",
+    "Ingested raw NYC Taxi Trip dataset (10M+ rows) from Azure Blob Storage",
+    "Performed data cleaning, filtering, and type casting using PySpark DataFrame APIs",
+    "Aggregated daily ride counts per vendor for business insights",
+    "Stored transformed datasets in Parquet format for efficient querying and BI integration",
+    "Designed a logical ER diagram (Raw → Cleaned → Aggregated tables) using DBML"
+  ],
+  businessObjective: "To build a scalable and efficient batch ETL pipeline for processing large-scale taxi trip data, ensuring clean, analytics-ready datasets that support reporting and decision-making.",
+  projectLink: "https://github.com/parthhhhh12/Data_Engineering_Personal_Project"
+}
+    ,
     {
       title: "Azure-Based Data Ingestion and Transformation",
       duration: "July 2025 - August 2025",
@@ -323,6 +325,16 @@ const App = () => {
                   <p className="text-gray-300 text-lg mb-4 leading-relaxed">
                     {project.description}
                   </p>
+                  {project.projectLink && (
+  <a
+    href={project.projectLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-block mb-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
+  >
+    🔗 View Project on GitHub
+  </a>
+)}
                   
                   {project.businessObjective && (
                     <div className="mb-6">
