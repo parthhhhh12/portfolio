@@ -49,19 +49,24 @@ const App = () => {
 }
     ,
     {
-      title: "Azure-Based Data Ingestion and Transformation",
-      duration: "July 2025 - August 2025",
-      client: "Industry Case Study (Training Program)",
-      description: "Designed and implemented an end-to-end cloud data pipeline to automate the ingestion, transformation, and storage of structured and semi-structured data.",
-      tech: ["Azure Data Factory", "Azure Data Lake Storage Gen2", "Azure Blob Storage", "Databricks", "PySpark"],
-      highlights: [
-        "Ingested product catalog data from Excel files using ADF Copy Data activity",
-        "Built parallel ingestion pipeline for daily website traffic logs (CSV/JSON)",
-        "Developed PySpark logic for data cleansing and transformation",
-        "Implemented Bronze, Silver, Gold data layer architecture"
-      ]
-    }
-  ];
+      
+  title: "NYC Taxi Data Pipeline using Azure Data Factory & Databricks",
+  duration: "Self-Project",
+  client: "Personal Development",
+  description: "Designed and implemented an end-to-end data engineering pipeline for processing the NYC Taxi dataset using Azure Data Factory (ADF), Databricks, and Azure Data Lake Storage (ADLS).",
+  tech: ["Azure Data Factory", "Azure Databricks", "Azure Data Lake Storage Gen2", "Mapping Data Flows", "Parquet"],
+  highlights: [
+      "Automated ingestion of raw trip records into ADLS using parameterized ADF pipelines",
+      "Applied filtering, aggregation, and schema enforcement via ADF Mapping Data Flows",
+      "Stored curated datasets in Parquet format for scalability and performance",
+      "Analyzed processed data in Databricks notebooks to derive vendor performance and payment insights",
+      "Generated insights: Vendor 2 handled ~60% rides, credit card payments contributed ~70% revenue",
+      "Implemented weekly scheduled triggers for automated execution"
+    ],
+    businessObjective: "To automate ingestion, transformation, and analysis of large-scale NYC Taxi trip data, ensuring reliable, analytics-ready datasets for BI tools.",
+    projectLink: "https://github.com/parthhhhh12/ADF_Pipeline_Data_Project"
+  }
+];
 
   const certifications = [
     "AWS Certified: AWS Academy Cloud Developing",
@@ -335,7 +340,7 @@ const App = () => {
     🔗 View Project on GitHub
   </a>
 )}
-                  
+
                   {project.businessObjective && (
                     <div className="mb-6">
                       <h4 className="text-lg font-semibold text-white mb-2">Business Objective:</h4>
