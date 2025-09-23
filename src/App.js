@@ -567,6 +567,22 @@ const App = () => {
                   className="bg-gray-800 p-4 rounded-full hover:bg-gray-700 transition-colors"
                 >
                   <Linkedin size={24} />
+                  </a>
+                {/* HackerRank */}
+                <a
+                  href="https://www.hackerrank.com/profile/parthsingh1253"
+                  target="_blank"
+                  className="bg-gray-800 p-4 rounded-full hover:bg-gray-700 transition-colors flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                  >
+                    <path d="M477.5 128l-221-128-221 128v256l221 128 221-128V128zM256 448L64 341.3V170.7L256 64l192 106.7v170.6L256 448zm-64-96h32V160h-32v192zm96 0h32V160h-32v192z" />
+                  </svg>
                 </a>
               </div>
             </div>
