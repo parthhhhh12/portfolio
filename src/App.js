@@ -40,7 +40,7 @@ const App = () => {
         });
       },
       {
-        threshold: 0.2, // section must be 50% visible to be active
+        threshold: 0.2,
       }
     );
 
@@ -193,8 +193,9 @@ const App = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold text-lg">
-                P
+              {/* Updated Logo: Database Icon instead of P */}
+              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                <Database className="text-white" size={20} />
               </div>
               <span className="font-bold text-xl">Parth</span>
             </div>
@@ -250,7 +251,6 @@ const App = () => {
               target="_blank"
               className="border border-gray-400 hover:border-white px-8 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
             >
-              {/* <Download size={20} /> */}
               View Resume
             </a>
           </div>
