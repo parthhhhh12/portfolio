@@ -1,6 +1,7 @@
  // src/App.jsx
 import React, { useEffect, useState, useRef } from "react";
 import {
+  Award, 
   ChevronDown,
   Mail,
   Phone,
@@ -9,7 +10,6 @@ import {
   Linkedin,
   Database,
   Cloud,
-  Award,
   Calendar,
   Users,
   Target,
@@ -79,7 +79,7 @@ const floatY = {
 };
 
 /* ============================
-   Static Data (same as yours)
+   Static Data (updated)
    ============================ */
 
 const SKILLS = [
@@ -203,10 +203,21 @@ const PROJECTS = [
   },
 ];
 
+/* CERTIFICATIONS now includes URLs for each certificate.
+   Replace `url` values with actual certificate links (Coursera / LinkedIn / AWS / etc.). */
 const CERTIFICATIONS = [
-  "AWS Certified: AWS Academy Cloud Developing",
-  "Industry-recognized Cloud Computing Training Program",
-  "HackerRank SQL Intermediate",
+  {
+    name: "AWS Certified: AWS Academy Cloud Developing",
+    url: "https://www.example.com/aws-academy-certificate", // <-- replace with real URL
+  },
+  {
+    name: "Industry-recognized Cloud Computing Training Program",
+    url: "https://www.example.com/cloud-training-certificate", // <-- replace with real URL
+  },
+  {
+    name: "HackerRank SQL Intermediate",
+    url: "https://www.hackerrank.com/certificates/your-certificate-id", // <-- replace with real URL
+  },
 ];
 
 /* ============================
@@ -444,22 +455,7 @@ export default function App() {
             </motion.div>
 
             <motion.div variants={cardFade("up", 0.12)} className="space-y-6">
-              <div className="bg-gray-700 rounded-xl p-6 shadow">
-                <h3 className="text-xl font-semibold mb-3 flex items-center gap-3">
-                  <Award className="text-yellow-400" size={20} />
-                  Certifications
-                </h3>
-
-                <motion.div className="grid gap-3" variants={containerStagger}>
-                  {CERTIFICATIONS.map((c, i) => (
-                    <motion.div key={i} variants={cardFade("up", i * 0.06)} className="flex items-center gap-3 p-3 bg-gray-600 rounded">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full" />
-                      <span className="text-gray-300">{c}</span>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </div>
-
+              {/* Certifications card removed from About section as requested. */}
               <div className="bg-gray-700 rounded-xl p-6 shadow">
                 <h3 className="text-xl font-semibold mb-3">Key Strengths</h3>
                 <ul className="text-gray-300 space-y-2">
@@ -469,6 +465,13 @@ export default function App() {
                   <li>• Azure ecosystem expertise</li>
                   <li>• Delta Lake implementation</li>
                 </ul>
+              </div>
+
+              <div className="bg-gray-700 rounded-xl p-6 shadow">
+                <h3 className="text-xl font-semibold mb-3">What I enjoy</h3>
+                <p className="text-gray-300">
+                  Problem solving, building reliable data systems, and turning messy data into business insights. I enjoy collaborating with cross-functional teams and learning new tools in the data stack.
+                </p>
               </div>
             </motion.div>
           </motion.div>
@@ -640,24 +643,62 @@ export default function App() {
       </section>
 
       {/* ---------- CERTIFICATIONS ---------- */}
-      <section id="certifications" className="py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.h2 className="text-4xl font-bold text-center mb-12 text-blue-300" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            Certifications
-          </motion.h2>
+      
+<section id="certifications" className="py-20">
+  <div className="max-w-5xl mx-auto px-6">
+    <h2 className="text-3xl font-bold mb-10 text-center">Certifications</h2>
 
-          <motion.ul className="max-w-3xl mx-auto space-y-4" initial="hidden" whileInView="show" variants={containerStagger} viewport={{ once: true }}>
-            {CERTIFICATIONS.map((cert, i) => (
-              <motion.li key={i} variants={cardFade("up", i * 0.06)} className="bg-gray-800 rounded-xl p-4 shadow hover:shadow-xl transition">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-200">{cert}</span>
-                  <span className="text-xs text-gray-400">Verified</span>
-                </div>
-              </motion.li>
-            ))}
-          </motion.ul>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* AWS Academy Graduate */}
+      <a
+        href="https://www.credly.com/badges/a97174d7-ca41-4aa8-afe9-0163699dcb66/public_url"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-gray-800 p-4 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
+      >
+        <div className="flex items-center space-x-4">
+          <Award size={28} className="text-yellow-400" />
+          <div>
+            <h3 className="text-lg font-semibold">AWS Academy Graduate</h3>
+            <p className="text-gray-400">Cloud Foundations</p>
+          </div>
         </div>
-      </section>
+      </a>
+
+      {/* HackerRank SQL (Intermediate) */}
+      <a
+        href="https://www.hackerrank.com/certificates/6f58d3da3e47"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-gray-800 p-4 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
+      >
+        <div className="flex items-center space-x-4">
+          <Award size={28} className="text-purple-400" />
+          <div>
+            <h3 className="text-lg font-semibold">HackerRank SQL</h3>
+            <p className="text-gray-400">Intermediate Certification</p>
+          </div>
+        </div>
+      </a>
+
+      {/* HackerRank SQL (Basic) */}
+      <a
+        href="https://www.hackerrank.com/certificates/f507e955aa98"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-gray-800 p-4 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
+      >
+        <div className="flex items-center space-x-4">
+          <Award size={28} className="text-blue-400" />
+          <div>
+            <h3 className="text-lg font-semibold">HackerRank SQL</h3>
+            <p className="text-gray-400">Basic Certification</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
       {/* ---------- CONTACT ---------- */}
       <section id="contact" className="py-20 bg-gray-800">
@@ -790,3 +831,4 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
     </>
   );
 }
+
