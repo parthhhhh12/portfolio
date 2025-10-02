@@ -665,6 +665,23 @@ export default function App() {
         </div>
       </a>
 
+       {/* HackerRank SQL (Advance) */}
+      <a
+        href="https://www.hackerrank.com/certificates/731721820af3"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-gray-800 p-4 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
+      >
+        <div className="flex items-center space-x-4">
+          <Award size={28} className="text-purple-400" />
+          <div>
+            <h3 className="text-lg font-semibold">HackerRank SQL</h3>
+            <p className="text-gray-400"> Advance Certification</p>
+          </div>
+        </div>
+      </a>
+
+
       {/* HackerRank SQL (Intermediate) */}
       <a
         href="https://www.hackerrank.com/certificates/6f58d3da3e47"
