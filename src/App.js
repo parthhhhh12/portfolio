@@ -716,61 +716,139 @@ export default function App() {
     </div>
   </div>
 </section>
+     
+     {/* ---------- CONTACT ---------- */}
+<section id="contact" className="py-20 bg-gray-800">
+  <div className="max-w-6xl mx-auto px-4">
+    <motion.h2
+      className="text-4xl font-bold text-center mb-12 text-blue-300"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      Let's Connect
+    </motion.h2>
 
-      {/* ---------- CONTACT ---------- */}
-      <section id="contact" className="py-20 bg-gray-800">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.h2 className="text-4xl font-bold text-center mb-12 text-blue-300" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            Let's Connect
-          </motion.h2>
+    <motion.div
+      className="grid md:grid-cols-2 gap-12 items-center"
+      initial="hidden"
+      whileInView="show"
+      variants={containerStagger}
+      viewport={{ once: true }}
+    >
+      {/* LEFT CONTACT DETAILS */}
+      <motion.div
+        variants={cardFade("up", 0.06)}
+        className="bg-gray-800 rounded-xl p-8 shadow"
+      >
+        <p className="text-gray-300 mb-6">
+          I'm actively seeking opportunities in data engineering roles where I
+          can apply my cloud-native skills and continue growing in the field of
+          big data and analytics.
+        </p>
 
-          <motion.div className="grid md:grid-cols-2 gap-12 items-center" initial="hidden" whileInView="show" variants={containerStagger} viewport={{ once: true }}>
-            <motion.div variants={cardFade("up", 0.06)} className="bg-gray-800 rounded-xl p-8 shadow">
-              <p className="text-gray-300 mb-6">
-                I'm actively seeking opportunities in data engineering roles where I can apply my cloud-native skills and continue growing in the field of big data and analytics.
-              </p>
+        <div className="space-y-4">
+          <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
+            <Mail className="text-blue-400" size={20} />
+            <span className="select-all">parthsingh1253@gmail.com</span>
+          </div>
 
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
-                  <Mail className="text-blue-400" size={20} />
-                  <span className="select-all">parthsingh1253@gmail.com</span>
-                </div>
+          <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
+            <Phone className="text-green-400" size={20} />
+            <span className="select-all">+91 8527713603</span>
+          </div>
 
-                <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
-                  <Phone className="text-green-400" size={20} />
-                  <span className="select-all">+91 8527713603</span>
-                </div>
+          <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
+            <MapPin className="text-red-400" size={20} />
+            <span>Gurugram, Haryana, India</span>
+          </div>
 
-                <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
-                  <MapPin className="text-red-400" size={20} />
-                  <span>Gurugram, Haryana, India</span>
-                </div>
-              </div>
-            </motion.div>
+          <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
+            <Github className="text-gray-300" size={20} />
+            <a
+              href="https://github.com/parthhhhh12"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400"
+            >
+              GitHub Profile
+            </a>
+          </div>
 
-            <motion.div variants={cardFade("up", 0.12)} className="text-center">
-              <img src="/img.jpeg" alt="Parth avatar" className="w-36 h-36 mx-auto rounded-full object-cover mb-4 border-4 border-gray-700" />
-
-              <div className="flex justify-center gap-6">
-                <IconButton href="https://github.com/parthhhhh12" label="GitHub">
-                  <Github size={20} />
-                </IconButton>
-
-                <IconButton href="https://www.linkedin.com/in/singh05e/" label="LinkedIn">
-                  <Linkedin size={20} />
-                </IconButton>
-
-                <IconButton href="https://www.hackerrank.com/profile/parthsingh1253" label="HackerRank">
-                  {/* Custom HackerRank svg (inline) */}
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="currentColor" aria-hidden>
-                    <path d="M477.5 128l-221-128-221 128v256l221 128 221-128V128zM256 448L64 341.3V170.7L256 64l192 106.7v170.6L256 448zm-64-96h32V160h-32v192zm96 0h32V160h-32v192z" />
-                  </svg>
-                </IconButton>
-              </div>
-            </motion.div>
-          </motion.div>
+          <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
+            <Linkedin className="text-blue-500" size={20} />
+            <a
+              href="https://www.linkedin.com/in/singh05e/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400"
+            >
+              LinkedIn Profile
+            </a>
+          </div>
         </div>
-      </section>
+      </motion.div>
+
+      {/* RIGHT CONTACT FORM */}
+      <motion.form
+        action="https://formspree.io/f/xgvnlvkd" // 🔁 REPLACE with your Formspree endpoint
+        method="POST"
+        variants={cardFade("up", 0.12)}
+        className="bg-gray-700 rounded-xl p-8 shadow-lg space-y-6"
+      >
+        <div>
+          <label htmlFor="name" className="block text-gray-300 font-semibold mb-2">
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            className="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="Your Name"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-gray-300 font-semibold mb-2">
+            Email
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            className="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="message" className="block text-gray-300 font-semibold mb-2">
+            Message
+          </label>
+          <textarea
+            name="message"
+            id="message"
+            rows="5"
+            required
+            className="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="Write your message here..."
+          ></textarea>
+        </div>
+
+        <motion.button
+          whileTap={{ scale: 0.97 }}
+          type="submit"
+          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all"
+        >
+          Send Message
+        </motion.button>
+      </motion.form>
+    </motion.div>
+  </div>
+</section>
 
       {/* ---------- FOOTER ---------- */}
       <footer className="py-8 bg-gray-900 border-t border-gray-700">
