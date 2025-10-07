@@ -21,7 +21,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
- * FULL PORTFOLIO APP (Animated + Accessible)
+ * FULL PORTFOLIO APP (Animated + Accessible + Mobile Responsive)
  *
  * - Keep this in one file for quick copy-paste into VS Code.
  * - Ensure Tailwind + Framer Motion + lucide-react are installed.
@@ -203,23 +203,6 @@ const PROJECTS = [
   },
 ];
 
-/* CERTIFICATIONS now includes URLs for each certificate.
-   Replace `url` values with actual certificate links (Coursera / LinkedIn / AWS / etc.). */
-const CERTIFICATIONS = [
-  {
-    name: "AWS Certified: AWS Academy Cloud Developing",
-    url: "https://www.example.com/aws-academy-certificate", // <-- replace with real URL
-  },
-  {
-    name: "Industry-recognized Cloud Computing Training Program",
-    url: "https://www.example.com/cloud-training-certificate", // <-- replace with real URL
-  },
-  {
-    name: "HackerRank SQL Intermediate",
-    url: "https://www.hackerrank.com/certificates/your-certificate-id", // <-- replace with real URL
-  },
-];
-
 /* ============================
    Small Utility Components
    ============================ */
@@ -352,9 +335,9 @@ export default function App() {
       </motion.nav>
 
       {/* ---------- HERO ---------- */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative pt-20">
+      <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 px-4">
         <motion.div
-          className="max-w-4xl text-center px-6"
+          className="max-w-4xl text-center w-full"
           initial={{ opacity: 0, y: 20, scale: 0.995 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -362,13 +345,13 @@ export default function App() {
           <motion.img
             src="/img.jpeg"
             alt="Parth"
-            className="w-36 h-36 rounded-full mx-auto object-cover shadow-2xl border-4 border-blue-600"
+            className="w-28 h-28 sm:w-36 sm:h-36 rounded-full mx-auto object-cover shadow-2xl border-4 border-blue-600"
             whileHover={{ scale: 1.06, rotate: 1 }}
             transition={{ type: "spring", stiffness: 220 }}
           />
 
           <motion.h1
-            className="mt-6 text-4xl md:text-6xl font-extrabold tracking-tight"
+            className="mt-6 text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight px-2"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
@@ -377,7 +360,7 @@ export default function App() {
           </motion.h1>
 
           <motion.h2
-            className="mt-2 text-xl md:text-2xl text-blue-300"
+            className="mt-2 text-lg sm:text-xl md:text-2xl text-blue-300 px-2"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
@@ -385,15 +368,15 @@ export default function App() {
             Associate Data Engineer
           </motion.h2>
 
-          <motion.p className="mt-4 text-gray-300 max-w-2xl mx-auto">
+          <motion.p className="mt-4 text-sm sm:text-base text-gray-300 max-w-2xl mx-auto px-4">
             Specialized in Azure | Databricks | Python | SQL | PySpark. Building
             scalable data pipelines and analytics-ready datasets.
           </motion.p>
 
-          <motion.div className="mt-8 inline-flex gap-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
+          <motion.div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
             <button
               onClick={() => scrollTo("projects")}
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 hover:bg-blue-700 transition-transform transform hover:-translate-y-0.5 shadow-lg"
+              className="w-full sm:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-blue-700 transition-transform transform hover:-translate-y-0.5 shadow-lg"
               aria-label="View projects"
             >
               <Briefcase size={18} />
@@ -404,33 +387,33 @@ export default function App() {
               href="/My_Data_Engineering_Resume-4.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-gray-400 px-6 py-3 rounded-lg font-semibold inline-flex items-center gap-2 hover:border-white"
+              className="w-full sm:w-auto border border-gray-400 px-6 py-3 rounded-lg font-semibold inline-flex items-center justify-center gap-2 hover:border-white"
             >
               View Resume
             </a>
           </motion.div>
         </motion.div>
 
-        <motion.div className="absolute bottom-8 left-1/2 transform -translate-x-1/2" {...floatY}>
+        <motion.div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:block" {...floatY}>
           <ChevronDown size={28} className="text-gray-400" />
         </motion.div>
       </section>
 
       {/* ---------- ABOUT ---------- */}
-      <section id="about" className="py-20 bg-gray-800 dark:bg-gray-800">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.h2 className="text-4xl font-bold text-center mb-12 text-blue-300" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+      <section id="about" className="py-12 sm:py-20 bg-gray-800 dark:bg-gray-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <motion.h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-blue-300" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             About Me
           </motion.h2>
 
-          <motion.div className="grid md:grid-cols-2 gap-8" initial="hidden" whileInView="show" variants={containerStagger} viewport={{ once: true }}>
-            <motion.div variants={cardFade("up", 0.05)} className="space-y-6">
-              <div className="bg-gray-700 rounded-xl p-6 shadow">
-                <h3 className="text-xl font-semibold mb-3 flex items-center gap-3">
-                  <Target className="text-blue-400" size={20} />
+          <motion.div className="grid md:grid-cols-2 gap-6 sm:gap-8" initial="hidden" whileInView="show" variants={containerStagger} viewport={{ once: true }}>
+            <motion.div variants={cardFade("up", 0.05)} className="space-y-4 sm:space-y-6">
+              <div className="bg-gray-700 rounded-xl p-4 sm:p-6 shadow">
+                <h3 className="text-lg sm:text-xl font-semibold mb-3 flex items-center gap-3">
+                  <Target className="text-blue-400 flex-shrink-0" size={20} />
                   Professional Summary
                 </h3>
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
                   Aspiring Data Engineer with hands-on training in modern data
                   engineering technologies, currently gaining practical
                   experience in PySpark, Databricks, and Microsoft Azure.
@@ -440,12 +423,12 @@ export default function App() {
                 </p>
               </div>
 
-              <div className="bg-gray-700 rounded-xl p-6 shadow">
-                <h3 className="text-xl font-semibold mb-3 flex items-center gap-3">
-                  <BookOpen className="text-green-400" size={20} />
+              <div className="bg-gray-700 rounded-xl p-4 sm:p-6 shadow">
+                <h3 className="text-lg sm:text-xl font-semibold mb-3 flex items-center gap-3">
+                  <BookOpen className="text-green-400 flex-shrink-0" size={20} />
                   Education
                 </h3>
-                <div>
+                <div className="text-sm sm:text-base">
                   <p className="font-semibold">Bachelor of Technology</p>
                   <p className="text-gray-300">Computer Science Engineering</p>
                   <p className="text-gray-400">University of Petroleum and Energy Studies (UPES)</p>
@@ -454,11 +437,10 @@ export default function App() {
               </div>
             </motion.div>
 
-            <motion.div variants={cardFade("up", 0.12)} className="space-y-6">
-              {/* Certifications card removed from About section as requested. */}
-              <div className="bg-gray-700 rounded-xl p-6 shadow">
-                <h3 className="text-xl font-semibold mb-3">Key Strengths</h3>
-                <ul className="text-gray-300 space-y-2">
+            <motion.div variants={cardFade("up", 0.12)} className="space-y-4 sm:space-y-6">
+              <div className="bg-gray-700 rounded-xl p-4 sm:p-6 shadow">
+                <h3 className="text-lg sm:text-xl font-semibold mb-3">Key Strengths</h3>
+                <ul className="text-sm sm:text-base text-gray-300 space-y-2">
                   <li>• Cloud-native data engineering solutions</li>
                   <li>• ETL/ELT pipeline development</li>
                   <li>• Big data processing with PySpark</li>
@@ -467,9 +449,9 @@ export default function App() {
                 </ul>
               </div>
 
-              <div className="bg-gray-700 rounded-xl p-6 shadow">
-                <h3 className="text-xl font-semibold mb-3">What I enjoy</h3>
-                <p className="text-gray-300">
+              <div className="bg-gray-700 rounded-xl p-4 sm:p-6 shadow">
+                <h3 className="text-lg sm:text-xl font-semibold mb-3">What I enjoy</h3>
+                <p className="text-sm sm:text-base text-gray-300">
                   Problem solving, building reliable data systems, and turning messy data into business insights. I enjoy collaborating with cross-functional teams and learning new tools in the data stack.
                 </p>
               </div>
@@ -479,35 +461,35 @@ export default function App() {
       </section>
 
       {/* ---------- SKILLS ---------- */}
-      <section id="skills" className="py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.h2 className="text-4xl font-bold text-center mb-12 text-blue-300" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+      <section id="skills" className="py-12 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <motion.h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-blue-300" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             Skills & Technologies
           </motion.h2>
 
-          <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" initial="hidden" whileInView="show" variants={containerStagger} viewport={{ once: true }}>
+          <motion.div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12" initial="hidden" whileInView="show" variants={containerStagger} viewport={{ once: true }}>
             {SKILLS.map((skill, idx) => (
               <motion.div
                 key={skill.name}
                 variants={cardFade("up", idx * 0.05)}
-                className="bg-gray-800 rounded-2xl p-6 shadow hover:shadow-2xl transition transform hover:-translate-y-1"
+                className="bg-gray-800 rounded-2xl p-4 sm:p-6 shadow hover:shadow-2xl transition transform hover:-translate-y-1"
                 tabIndex={0}
                 role="article"
                 aria-label={`${skill.name} skill card`}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">{skill.name}</h3>
-                    <p className="text-sm text-gray-400">{skill.description}</p>
+                <div className="flex items-start justify-between mb-4 gap-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-base sm:text-lg mb-1 truncate">{skill.name}</h3>
+                    <p className="text-xs sm:text-sm text-gray-400">{skill.description}</p>
                   </div>
 
-                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${skill.proficiency === "Advanced" ? "bg-green-600 text-white" : "bg-blue-600 text-white"}`}>
+                  <span className={`flex-shrink-0 px-2 sm:px-3 py-1 rounded-full text-xs font-semibold ${skill.proficiency === "Advanced" ? "bg-green-600 text-white" : "bg-blue-600 text-white"}`}>
                     {skill.proficiency}
                   </span>
                 </div>
 
                 {/* Animated Proficiency Dots */}
-                <div className="flex gap-2 mb-3" aria-hidden>
+                <div className="flex gap-1.5 sm:gap-2 mb-3" aria-hidden>
                   {[...Array(5)].map((_, dotIndex) => (
                     <motion.div
                       key={dotIndex}
@@ -515,55 +497,55 @@ export default function App() {
                       whileInView={{ scale: dotIndex < skill.dots ? 1 : 0.9, opacity: dotIndex < skill.dots ? 1 : 0.25 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.35, delay: dotIndex * 0.04 }}
-                      className={`w-3 h-3 rounded-full ${dotIndex < skill.dots ? skill.colorClass : "bg-gray-600"}`}
+                      className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full ${dotIndex < skill.dots ? skill.colorClass : "bg-gray-600"}`}
                     />
                   ))}
                 </div>
 
                 {/* Progress bar */}
                 <div className="text-xs text-gray-400 mb-1">Proficiency: {skill.percent}%</div>
-                <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                  <motion.div className={`${skill.colorClass} h-3 rounded-full`} initial={{ width: 0 }} whileInView={{ width: `${skill.percent}%` }} transition={{ duration: 0.8 }} />
+                <div className="w-full bg-gray-700 rounded-full h-2.5 sm:h-3 overflow-hidden">
+                  <motion.div className={`${skill.colorClass} h-full rounded-full`} initial={{ width: 0 }} whileInView={{ width: `${skill.percent}%` }} transition={{ duration: 0.8 }} />
                 </div>
               </motion.div>
             ))}
           </motion.div>
 
           {/* Technology categories */}
-          <motion.div className="grid md:grid-cols-3 gap-8" initial="hidden" whileInView="show" variants={containerStagger} viewport={{ once: true }}>
-            <motion.div variants={cardFade("up", 0.05)} className="bg-gray-800 rounded-xl p-6 text-center shadow">
-              <Cloud className="text-blue-400 mx-auto mb-4" size={44} />
-              <h3 className="text-xl font-bold mb-2">Cloud Platforms</h3>
-              <p className="text-gray-300 mb-4">Microsoft Azure, AWS</p>
+          <motion.div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" initial="hidden" whileInView="show" variants={containerStagger} viewport={{ once: true }}>
+            <motion.div variants={cardFade("up", 0.05)} className="bg-gray-800 rounded-xl p-4 sm:p-6 text-center shadow">
+              <Cloud className="text-blue-400 mx-auto mb-3 sm:mb-4" size={36} />
+              <h3 className="text-lg sm:text-xl font-bold mb-2">Cloud Platforms</h3>
+              <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">Microsoft Azure, AWS</p>
               <div className="flex flex-wrap gap-2 justify-center">
                 {["Azure Data Factory", "ADLS Gen2", "Azure Blob Storage", "AWS Academy"].map((t) => (
-                  <span key={t} className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                  <span key={t} className="bg-blue-600 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
                     {t}
                   </span>
                 ))}
               </div>
             </motion.div>
 
-            <motion.div variants={cardFade("up", 0.12)} className="bg-gray-800 rounded-xl p-6 text-center shadow">
-              <Database className="text-purple-400 mx-auto mb-4" size={44} />
-              <h3 className="text-xl font-bold mb-2">Data Engineering</h3>
-              <p className="text-gray-300 mb-4">ETL/ELT pipelines, Data Modeling</p>
+            <motion.div variants={cardFade("up", 0.12)} className="bg-gray-800 rounded-xl p-4 sm:p-6 text-center shadow">
+              <Database className="text-purple-400 mx-auto mb-3 sm:mb-4" size={36} />
+              <h3 className="text-lg sm:text-xl font-bold mb-2">Data Engineering</h3>
+              <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">ETL/ELT pipelines, Data Modeling</p>
               <div className="flex flex-wrap gap-2 justify-center">
                 {["PySpark", "Databricks", "Delta Lake", "Data Orchestration"].map((t) => (
-                  <span key={t} className="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">
+                  <span key={t} className="bg-purple-600 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
                     {t}
                   </span>
                 ))}
               </div>
             </motion.div>
 
-            <motion.div variants={cardFade("up", 0.18)} className="bg-gray-800 rounded-xl p-6 text-center shadow">
-              <Briefcase className="text-green-400 mx-auto mb-4" size={44} />
-              <h3 className="text-xl font-bold mb-2">Programming</h3>
-              <p className="text-gray-300 mb-4">Python, SQL, Java</p>
+            <motion.div variants={cardFade("up", 0.18)} className="bg-gray-800 rounded-xl p-4 sm:p-6 text-center shadow sm:col-span-2 lg:col-span-1">
+              <Briefcase className="text-green-400 mx-auto mb-3 sm:mb-4" size={36} />
+              <h3 className="text-lg sm:text-xl font-bold mb-2">Programming</h3>
+              <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4">Python, SQL, Java</p>
               <div className="flex flex-wrap gap-2 justify-center">
                 {["Python", "SQL", "Java", "Git"].map((t) => (
-                  <span key={t} className="bg-green-600 text-white px-3 py-1 rounded-full text-sm">
+                  <span key={t} className="bg-green-600 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
                     {t}
                   </span>
                 ))}
@@ -574,32 +556,32 @@ export default function App() {
       </section>
 
       {/* ---------- PROJECTS ---------- */}
-      <section id="projects" className="py-20 bg-gray-800">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.h2 className="text-4xl font-bold text-center mb-12 text-blue-300" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+      <section id="projects" className="py-12 sm:py-20 bg-gray-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <motion.h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-blue-300" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             Recent Projects
           </motion.h2>
 
-          <motion.div className="space-y-8" initial="hidden" whileInView="show" variants={containerStagger} viewport={{ once: true }}>
+          <motion.div className="space-y-6 sm:space-y-8" initial="hidden" whileInView="show" variants={containerStagger} viewport={{ once: true }}>
             {PROJECTS.map((p, i) => (
-              <motion.article key={i} variants={cardFade("up", i * 0.08)} className="bg-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1">
-                <div className="grid lg:grid-cols-3 gap-6">
-                  <div className="lg:col-span-1 space-y-4">
+              <motion.article key={i} variants={cardFade("up", i * 0.08)} className="bg-gray-700 rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1">
+                <div className="grid lg:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="lg:col-span-1 space-y-3 sm:space-y-4">
                     <div className="flex items-center gap-2">
-                      <Calendar className="text-blue-400" size={18} />
-                      <span className="text-blue-400 font-semibold">{p.duration}</span>
+                      <Calendar className="text-blue-400 flex-shrink-0" size={16} />
+                      <span className="text-sm sm:text-base text-blue-400 font-semibold">{p.duration}</span>
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <Users className="text-green-400" size={18} />
-                      <span className="text-gray-300">{p.client}</span>
+                      <Users className="text-green-400 flex-shrink-0" size={16} />
+                      <span className="text-sm sm:text-base text-gray-300">{p.client}</span>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-white mb-2">Technologies:</h4>
+                      <h4 className="font-semibold text-white mb-2 text-sm sm:text-base">Technologies:</h4>
                       <div className="flex flex-wrap gap-2">
                         {p.tech.map((t) => (
-                          <span key={t} className="bg-blue-600 text-white px-3 py-1 rounded text-sm">
+                          <span key={t} className="bg-blue-600 text-white px-2 sm:px-3 py-1 rounded text-xs sm:text-sm">
                             {t}
                           </span>
                         ))}
@@ -608,29 +590,29 @@ export default function App() {
                   </div>
 
                   <div className="lg:col-span-2">
-                    <h3 className="text-2xl font-bold mb-3 text-blue-300">{p.title}</h3>
-                    <p className="text-gray-300 mb-4 leading-relaxed">{p.description}</p>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3 text-blue-300">{p.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-300 mb-4 leading-relaxed">{p.description}</p>
 
                     <div className="mb-4">
-                      <h4 className="text-white font-semibold mb-2">Business Objective:</h4>
-                      <p className="text-gray-300 bg-gray-600 p-3 rounded italic">{p.businessObjective}</p>
+                      <h4 className="text-sm sm:text-base text-white font-semibold mb-2">Business Objective:</h4>
+                      <p className="text-sm sm:text-base text-gray-300 bg-gray-600 p-3 rounded italic">{p.businessObjective}</p>
                     </div>
 
-                    <div className="space-y-3 mb-4">
-                      <h4 className="text-white font-semibold">Key Achievements:</h4>
+                    <div className="space-y-2 sm:space-y-3 mb-4">
+                      <h4 className="text-sm sm:text-base text-white font-semibold">Key Achievements:</h4>
                       {p.highlights.map((h, idx) => (
-                        <div key={idx} className="flex items-start gap-3 p-3 bg-gray-600 rounded">
-                          <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0" />
-                          <span className="text-gray-300">{h}</span>
+                        <div key={idx} className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-600 rounded">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full mt-1.5 sm:mt-2 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-gray-300">{h}</span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="flex items-center gap-4">
-                      <a href={p.projectLink} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                      <a href={p.projectLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-center text-sm sm:text-base">
                         View Project on GitHub
                       </a>
-                      <a href={p.projectLink} target="_blank" rel="noopener noreferrer" className="text-blue-300 underline">
+                      <a href={p.projectLink} target="_blank" rel="noopener noreferrer" className="text-blue-300 underline text-sm sm:text-base">
                         Open Repo
                       </a>
                     </div>
@@ -644,216 +626,215 @@ export default function App() {
 
       {/* ---------- CERTIFICATIONS ---------- */}
       
-<section id="certifications" className="py-20">
-  <div className="max-w-5xl mx-auto px-6">
-    <h2 className="text-3xl font-bold mb-10 text-center">Certifications</h2>
+      <section id="certifications" className="py-12 sm:py-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 text-center text-blue-300">Certifications</h2>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {/* AWS Academy Graduate */}
-      <a
-        href="https://www.credly.com/badges/a97174d7-ca41-4aa8-afe9-0163699dcb66/public_url"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-gray-800 p-4 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
-      >
-        <div className="flex items-center space-x-4">
-          <Award size={28} className="text-yellow-400" />
-          <div>
-            <h3 className="text-lg font-semibold">AWS Academy Graduate</h3>
-            <p className="text-gray-400">Cloud Foundations</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            {/* AWS Academy Graduate */}
+            <a
+              href="https://www.credly.com/badges/a97174d7-ca41-4aa8-afe9-0163699dcb66/public_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-800 p-4 sm:p-5 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
+            >
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <Award size={24} className="text-yellow-400 flex-shrink-0" />
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-semibold truncate">AWS Academy Graduate</h3>
+                  <p className="text-sm sm:text-base text-gray-400">Cloud Foundations</p>
+                </div>
+              </div>
+            </a>
+
+            {/* HackerRank SQL (Advance) */}
+            <a
+              href="https://www.hackerrank.com/certificates/731721820af3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-800 p-4 sm:p-5 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
+            >
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <Award size={24} className="text-purple-400 flex-shrink-0" />
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-semibold truncate">HackerRank SQL</h3>
+                  <p className="text-sm sm:text-base text-gray-400">Advance Certification</p>
+                </div>
+              </div>
+            </a>
+
+            {/* HackerRank SQL (Intermediate) */}
+            <a
+              href="https://www.hackerrank.com/certificates/6f58d3da3e47"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-800 p-4 sm:p-5 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
+            >
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <Award size={24} className="text-purple-400 flex-shrink-0" />
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-semibold truncate">HackerRank SQL</h3>
+                  <p className="text-sm sm:text-base text-gray-400">Intermediate Certification</p>
+                </div>
+              </div>
+            </a>
+
+            {/* HackerRank SQL (Basic) */}
+            <a
+              href="https://www.hackerrank.com/certificates/f507e955aa98"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-800 p-4 sm:p-5 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
+            >
+              <div className="flex items-center space-x-3 sm:space-x-4">
+                <Award size={24} className="text-blue-400 flex-shrink-0" />
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-semibold truncate">HackerRank SQL</h3>
+                  <p className="text-sm sm:text-base text-gray-400">Basic Certification</p>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
-      </a>
-
-       {/* HackerRank SQL (Advance) */}
-      <a
-        href="https://www.hackerrank.com/certificates/731721820af3"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-gray-800 p-4 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
-      >
-        <div className="flex items-center space-x-4">
-          <Award size={28} className="text-purple-400" />
-          <div>
-            <h3 className="text-lg font-semibold">HackerRank SQL</h3>
-            <p className="text-gray-400"> Advance Certification</p>
-          </div>
-        </div>
-      </a>
-
-
-      {/* HackerRank SQL (Intermediate) */}
-      <a
-        href="https://www.hackerrank.com/certificates/6f58d3da3e47"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-gray-800 p-4 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
-      >
-        <div className="flex items-center space-x-4">
-          <Award size={28} className="text-purple-400" />
-          <div>
-            <h3 className="text-lg font-semibold">HackerRank SQL</h3>
-            <p className="text-gray-400">Intermediate Certification</p>
-          </div>
-        </div>
-      </a>
-
-      {/* HackerRank SQL (Basic) */}
-      <a
-        href="https://www.hackerrank.com/certificates/f507e955aa98"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-gray-800 p-4 rounded-2xl hover:bg-gray-700 transition-colors shadow-md"
-      >
-        <div className="flex items-center space-x-4">
-          <Award size={28} className="text-blue-400" />
-          <div>
-            <h3 className="text-lg font-semibold">HackerRank SQL</h3>
-            <p className="text-gray-400">Basic Certification</p>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
+      </section>
      
-     {/* ---------- CONTACT ---------- */}
-<section id="contact" className="py-20 bg-gray-800">
-  <div className="max-w-6xl mx-auto px-4">
-    <motion.h2
-      className="text-4xl font-bold text-center mb-12 text-blue-300"
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-    >
-      Let's Connect
-    </motion.h2>
+      {/* ---------- CONTACT ---------- */}
+      <section id="contact" className="py-12 sm:py-20 bg-gray-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <motion.h2
+            className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-blue-300"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Let's Connect
+          </motion.h2>
 
-    <motion.div
-      className="grid md:grid-cols-2 gap-12 items-center"
-      initial="hidden"
-      whileInView="show"
-      variants={containerStagger}
-      viewport={{ once: true }}
-    >
-      {/* LEFT CONTACT DETAILS */}
-      <motion.div
-        variants={cardFade("up", 0.06)}
-        className="bg-gray-800 rounded-xl p-8 shadow"
-      >
-        <p className="text-gray-300 mb-6">
-          I'm actively seeking opportunities in data engineering roles where I
-          can apply my cloud-native skills and continue growing in the field of
-          big data and analytics.
-        </p>
-
-        <div className="space-y-4">
-          <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
-            <Mail className="text-blue-400" size={20} />
-            <span className="select-all">parthsingh1253@gmail.com</span>
-          </div>
-
-          <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
-            <Phone className="text-green-400" size={20} />
-            <span className="select-all">+91 8527713603</span>
-          </div>
-
-          <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
-            <MapPin className="text-red-400" size={20} />
-            <span>Gurugram, Haryana, India</span>
-          </div>
-
-          <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
-            <Github className="text-gray-300" size={20} />
-            <a
-              href="https://github.com/parthhhhh12"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-400"
+          <motion.div
+            className="grid md:grid-cols-2 gap-8 sm:gap-12 items-start"
+            initial="hidden"
+            whileInView="show"
+            variants={containerStagger}
+            viewport={{ once: true }}
+          >
+            {/* LEFT CONTACT DETAILS */}
+            <motion.div
+              variants={cardFade("up", 0.06)}
+              className="bg-gray-800 rounded-xl p-4 sm:p-8 shadow order-2 md:order-1"
             >
-              GitHub Profile
-            </a>
-          </div>
+              <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6">
+                I'm actively seeking opportunities in data engineering roles where I
+                can apply my cloud-native skills and continue growing in the field of
+                big data and analytics.
+              </p>
 
-          <div className="flex items-center gap-4 p-4 bg-gray-700 rounded-lg">
-            <Linkedin className="text-blue-500" size={20} />
-            <a
-              href="https://www.linkedin.com/in/singh05e/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-400"
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-700 rounded-lg">
+                  <Mail className="text-blue-400 flex-shrink-0" size={18} />
+                  <span className="select-all text-sm sm:text-base break-all">parthsingh1253@gmail.com</span>
+                </div>
+
+                <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-700 rounded-lg">
+                  <Phone className="text-green-400 flex-shrink-0" size={18} />
+                  <span className="select-all text-sm sm:text-base">+91 8527713603</span>
+                </div>
+
+                <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-700 rounded-lg">
+                  <MapPin className="text-red-400 flex-shrink-0" size={18} />
+                  <span className="text-sm sm:text-base">Gurugram, Haryana, India</span>
+                </div>
+
+                <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-700 rounded-lg">
+                  <Github className="text-gray-300 flex-shrink-0" size={18} />
+                  <a
+                    href="https://github.com/parthhhhh12"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-blue-400 text-sm sm:text-base break-all"
+                  >
+                    GitHub Profile
+                  </a>
+                </div>
+
+                <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gray-700 rounded-lg">
+                  <Linkedin className="text-blue-500 flex-shrink-0" size={18} />
+                  <a
+                    href="https://www.linkedin.com/in/singh05e/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-blue-400 text-sm sm:text-base break-all"
+                  >
+                    LinkedIn Profile
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* RIGHT CONTACT FORM */}
+            <motion.form
+              action="https://formspree.io/f/xgvnlvkd"
+              method="POST"
+              variants={cardFade("up", 0.12)}
+              className="bg-gray-700 rounded-xl p-4 sm:p-8 shadow-lg space-y-4 sm:space-y-6 order-1 md:order-2"
             >
-              LinkedIn Profile
-            </a>
-          </div>
-        </div>
-      </motion.div>
+              <div>
+                <label htmlFor="name" className="block text-gray-300 font-semibold mb-2 text-sm sm:text-base">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  className="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none text-sm sm:text-base"
+                  placeholder="Your Name"
+                />
+              </div>
 
-      {/* RIGHT CONTACT FORM */}
-      <motion.form
-        action="https://formspree.io/f/xgvnlvkd" // 🔁 REPLACE with your Formspree endpoint
-        method="POST"
-        variants={cardFade("up", 0.12)}
-        className="bg-gray-700 rounded-xl p-8 shadow-lg space-y-6"
-      >
-        <div>
-          <label htmlFor="name" className="block text-gray-300 font-semibold mb-2">
-            Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            required
-            className="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            placeholder="Your Name"
-          />
-        </div>
+              <div>
+                <label htmlFor="email" className="block text-gray-300 font-semibold mb-2 text-sm sm:text-base">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  className="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none text-sm sm:text-base"
+                  placeholder="you@example.com"
+                />
+              </div>
 
-        <div>
-          <label htmlFor="email" className="block text-gray-300 font-semibold mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            required
-            className="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            placeholder="you@example.com"
-          />
-        </div>
+              <div>
+                <label htmlFor="message" className="block text-gray-300 font-semibold mb-2 text-sm sm:text-base">
+                  Message
+                </label>
+                <textarea
+                  name="message"
+                  id="message"
+                  rows="5"
+                  required
+                  className="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none text-sm sm:text-base"
+                  placeholder="Write your message here..."
+                ></textarea>
+              </div>
 
-        <div>
-          <label htmlFor="message" className="block text-gray-300 font-semibold mb-2">
-            Message
-          </label>
-          <textarea
-            name="message"
-            id="message"
-            rows="5"
-            required
-            className="w-full p-3 rounded-lg bg-gray-800 text-white focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            placeholder="Write your message here..."
-          ></textarea>
+              <motion.button
+                whileTap={{ scale: 0.97 }}
+                type="submit"
+                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all text-sm sm:text-base"
+              >
+                Send Message
+              </motion.button>
+            </motion.form>
+          </motion.div>
         </div>
-
-        <motion.button
-          whileTap={{ scale: 0.97 }}
-          type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all"
-        >
-          Send Message
-        </motion.button>
-      </motion.form>
-    </motion.div>
-  </div>
-</section>
+      </section>
 
       {/* ---------- FOOTER ---------- */}
-      <footer className="py-8 bg-gray-900 border-t border-gray-700">
+      <footer className="py-6 sm:py-8 bg-gray-900 border-t border-gray-700">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-gray-400">© 2025 Parth.</p>
+          <p className="text-sm sm:text-base text-gray-400">© 2025 Parth.</p>
         </div>
       </footer>
     </div>
@@ -872,33 +853,49 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open menu"
-        className="p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 active:scale-95 transition-transform"
       >
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
-          <path d="M2 4h16M2 10h16M2 16h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
       </button>
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "tween", duration: 0.28 }}
-            className="fixed inset-0 z-50 bg-black/60"
-            role="dialog"
-            aria-modal="true"
-          >
-            <div className="absolute right-0 top-0 w-72 h-full bg-gray-900 p-6">
-              <div className="flex items-center justify-between mb-6">
-                <div className="font-bold">Parth</div>
-                <button onClick={() => setOpen(false)} aria-label="Close menu" className="p-2 rounded-md bg-gray-800">
-                  ✕
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+              onClick={() => setOpen(false)}
+              role="dialog"
+              aria-modal="true"
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.28 }}
+              className="fixed right-0 top-0 bottom-0 z-50 w-72 sm:w-80 bg-gray-900 p-6 shadow-2xl overflow-y-auto"
+            >
+              <div className="flex items-center justify-between mb-8">
+                <div className="font-bold text-lg">Parth</div>
+                <button 
+                  onClick={() => setOpen(false)} 
+                  aria-label="Close menu" 
+                  className="p-2 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors active:scale-95"
+                >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
+                  </svg>
                 </button>
               </div>
 
-              <nav className="flex flex-col gap-3">
+              <nav className="flex flex-col gap-2 mb-8">
                 {["home", "about", "skills", "projects", "certifications", "contact"].map((s) => (
                   <button
                     key={s}
@@ -906,21 +903,30 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
                       onNavigate(s);
                       setOpen(false);
                     }}
-                    className={`text-left py-2 px-2 rounded ${activeSection === s ? "bg-blue-600 text-white" : "text-gray-300 hover:bg-gray-800"}`}
+                    className={`text-left py-3 px-4 rounded-lg capitalize transition-all active:scale-98 ${
+                      activeSection === s 
+                        ? "bg-blue-600 text-white font-semibold" 
+                        : "text-gray-300 hover:bg-gray-800"
+                    }`}
                   >
                     {s}
                   </button>
                 ))}
               </nav>
 
-              <div className="mt-6">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" checked={dark} onChange={() => setDark((d) => !d)} className="form-checkbox" />
+              <div className="pt-6 border-t border-gray-700">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input 
+                    type="checkbox" 
+                    checked={dark} 
+                    onChange={() => setDark((d) => !d)} 
+                    className="w-5 h-5 rounded bg-gray-800 border-gray-600 text-blue-600 focus:ring-2 focus:ring-blue-400"
+                  />
                   <span className="text-gray-300">Dark mode</span>
                 </label>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
