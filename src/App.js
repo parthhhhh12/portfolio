@@ -1,4 +1,4 @@
-// src/App.jsx
+ // src/App.jsx
 import React, { useEffect, useState, useRef } from "react";
 import {
   Award, 
@@ -843,7 +843,7 @@ export default function App() {
 
 /* ============================
    Mobile Menu (helper component)
-   - Simple slide-in modal for small screens
+   - Slide-in modal for small screens
    ============================ */
 function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
   const [open, setOpen] = useState(false);
@@ -860,21 +860,26 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
     };
   }, [open]);
 
+  const handleNavClick = (section) => {
+    onNavigate(section);
+    setTimeout(() => setOpen(false), 100);
+  };
+
   return (
     <>
       <button
         onClick={() => setOpen(true)}
         aria-label="Open menu"
-        className="p-2.5 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-400 active:scale-95 transition-transform"
+        className="p-2.5 rounded-md bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 active:scale-95 transition-all z-50"
       >
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <line x1="3" y1="6" x2="21" y2="6" />
           <line x1="3" y1="12" x2="21" y2="12" />
           <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
       </button>
 
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {open && (
           <>
             {/* Backdrop */}
@@ -882,8 +887,8 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm"
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[998]"
               onClick={() => setOpen(false)}
             />
             
@@ -892,23 +897,23 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 z-[70] w-[85%] max-w-sm bg-gray-900 shadow-2xl overflow-y-auto"
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed right-0 top-0 bottom-0 w-[280px] bg-gray-900 shadow-2xl overflow-y-auto z-[999]"
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-700">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center shadow">
-                    <Database className="text-white" size={18} />
+              <div className="flex items-center justify-between p-5 border-b border-gray-700 bg-gray-800">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                    <Database className="text-white" size={16} />
                   </div>
-                  <span className="font-bold text-xl text-white">Parth</span>
+                  <span className="font-bold text-lg text-white">Menu</span>
                 </div>
                 <button 
                   onClick={() => setOpen(false)} 
                   aria-label="Close menu" 
-                  className="p-2 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors active:scale-95"
+                  className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors active:scale-95"
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                   </svg>
@@ -917,47 +922,51 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
 
               {/* Navigation Links */}
               <nav className="flex flex-col p-4 gap-2">
-                {["home", "about", "skills", "projects", "certifications", "contact"].map((section) => (
-                  <motion.button
-                    key={section}
-                    onClick={() => {
-                      onNavigate(section);
-                      setOpen(false);
-                    }}
-                    className={`text-left py-4 px-5 rounded-xl capitalize transition-all font-medium text-lg ${
-                      activeSection === section 
+                {[
+                  { id: "home", label: "Home", icon: "🏠" },
+                  { id: "about", label: "About", icon: "👤" },
+                  { id: "skills", label: "Skills", icon: "⚡" },
+                  { id: "projects", label: "Projects", icon: "💼" },
+                  { id: "certifications", label: "Certifications", icon: "🏆" },
+                  { id: "contact", label: "Contact", icon: "📧" }
+                ].map((section) => (
+                  <button
+                    key={section.id}
+                    onClick={() => handleNavClick(section.id)}
+                    className={`text-left py-3.5 px-4 rounded-lg transition-all font-medium flex items-center gap-3 ${
+                      activeSection === section.id 
                         ? "bg-blue-600 text-white shadow-lg" 
                         : "text-gray-300 hover:bg-gray-800 active:bg-gray-750"
                     }`}
-                    whileTap={{ scale: 0.98 }}
                   >
-                    {section}
-                  </motion.button>
+                    <span className="text-xl">{section.icon}</span>
+                    <span>{section.label}</span>
+                  </button>
                 ))}
               </nav>
 
               {/* Dark Mode Toggle */}
-              <div className="p-6 border-t border-gray-700 mt-4">
-                <label className="flex items-center gap-4 cursor-pointer p-3 rounded-lg hover:bg-gray-800 transition-colors">
+              <div className="p-4 border-t border-gray-700 mt-2">
+                <button
+                  onClick={() => setDark((d) => !d)}
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-800 hover:bg-gray-750 transition-colors"
+                >
+                  <span className="text-gray-300 font-medium flex items-center gap-2">
+                    {dark ? <Moon size={18} /> : <Sun size={18} />}
+                    Dark Mode
+                  </span>
                   <div className="relative">
-                    <input 
-                      type="checkbox" 
-                      checked={dark} 
-                      onChange={() => setDark((d) => !d)} 
-                      className="sr-only peer"
-                    />
-                    <div className="w-12 h-6 bg-gray-700 rounded-full peer peer-checked:bg-blue-600 transition-colors"></div>
-                    <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-6"></div>
+                    <div className={`w-11 h-6 rounded-full transition-colors ${dark ? 'bg-blue-600' : 'bg-gray-600'}`}></div>
+                    <div className={`absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform ${dark ? 'translate-x-5' : ''}`}></div>
                   </div>
-                  <span className="text-gray-300 font-medium">Dark Mode</span>
-                  {dark ? <Moon size={18} className="text-blue-400" /> : <Sun size={18} className="text-yellow-400" />}
-                </label>
+                </button>
               </div>
 
-              {/* Footer in Menu */}
-              <div className="p-6 text-center text-sm text-gray-500 border-t border-gray-700 mt-auto">
-                <p>© 2025 Parth</p>
+              {/* Footer */}
+              <div className="p-4 text-center text-xs text-gray-500 border-t border-gray-700 mt-4">
+                <p className="font-semibold text-gray-400">Parth</p>
                 <p className="mt-1">Data Engineer</p>
+                <p className="mt-2">© 2025 All rights reserved</p>
               </div>
             </motion.div>
           </>
