@@ -1,7 +1,7 @@
  // src/App.jsx
 import React, { useEffect, useState, useRef } from "react";
 import {
-  Award, 
+  Award,
   ChevronDown,
   Mail,
   Phone,
@@ -625,7 +625,7 @@ export default function App() {
       </section>
 
       {/* ---------- CERTIFICATIONS ---------- */}
-      
+
       <section id="certifications" className="py-12 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-10 text-center text-blue-300">Certifications</h2>
@@ -697,7 +697,7 @@ export default function App() {
           </div>
         </div>
       </section>
-     
+
       {/* ---------- CONTACT ---------- */}
       <section id="contact" className="py-12 sm:py-20 bg-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -843,7 +843,7 @@ export default function App() {
 
 /* ============================
    Mobile Menu (helper component)
-   - Slide-in modal for small screens
+   - Slide-in modal for small screens (UPDATED to match provided screenshot)
    ============================ */
 function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
   const [open, setOpen] = useState(false);
@@ -851,20 +851,28 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [open]);
 
   const handleNavClick = (section) => {
-    // navigate and close immediately for reliable mobile behavior
     onNavigate(section);
     setOpen(false);
   };
+
+  const navItems = [
+    { id: "home", label: "home" },
+    { id: "about", label: "about" },
+    { id: "skills", label: "skills" },
+    { id: "projects", label: "projects" },
+    { id: "certifications", label: "certifications" },
+    { id: "contact", label: "contact" },
+  ];
 
   return (
     <>
@@ -889,93 +897,142 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[998]"
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[998]"
               onClick={() => setOpen(false)}
             />
-            
+
             {/* Menu Panel */}
-            <motion.div
+            <motion.aside
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed right-0 top-0 bottom-0 w-[280px] bg-gray-900 shadow-2xl overflow-y-auto z-[999]"
+              className="fixed right-0 top-0 bottom-0 w-[320px] sm:w-[360px] bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-800 shadow-2xl overflow-y-auto z-[999] p-4"
               role="dialog"
               aria-modal="true"
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-5 border-b border-gray-700 bg-gray-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center shadow">
                     <Database className="text-white" size={16} />
                   </div>
-                  <span className="font-bold text-lg text-white">Menu</span>
+                  <span className="text-white font-semibold">Parth</span>
                 </div>
-                <button 
-                  onClick={() => setOpen(false)} 
-                  aria-label="Close menu" 
-                  className="p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors active:scale-95"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg>
-                </button>
-              </div>
 
-              {/* Navigation Links */}
-              <nav className="flex flex-col p-4 gap-2" aria-label="Mobile site navigation">
-                {[
-                  { id: "home", label: "Home", icon: "🏠" },
-                  { id: "about", label: "About", icon: "👤" },
-                  { id: "skills", label: "Skills", icon: "⚡" },
-                  { id: "projects", label: "Projects", icon: "💼" },
-                  { id: "certifications", label: "Certifications", icon: "🏆" },
-                  { id: "contact", label: "Contact", icon: "📧" }
-                ].map((section) => (
+                <div className="flex items-center gap-2">
                   <button
-                    key={section.id}
-                    onClick={() => handleNavClick(section.id)}
-                    className={`text-left py-3.5 px-4 rounded-lg transition-all font-medium flex items-center gap-3 ${
-                      activeSection === section.id 
-                        ? "bg-blue-600 text-white shadow-lg" 
-                        : "text-gray-300 hover:bg-gray-800 hover:text-white"
-                    }`}
+                    onClick={() => setOpen(false)}
+                    aria-label="Close menu"
+                    className="p-2 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors active:scale-95"
                   >
-                    <span className="text-xl">{section.icon}</span>
-                    <span>{section.label}</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
                   </button>
-                ))}
-              </nav>
+                </div>
+              </div>
 
-              {/* Dark Mode Toggle */}
-              <div className="p-4 border-t border-gray-700 mt-2">
-                <button
-                  onClick={() => setDark((d) => !d)}
-                  className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors"
-                >
-                  <span className="text-gray-300 font-medium flex items-center gap-2">
-                    {dark ? <Moon size={18} /> : <Sun size={18} />}
-                    Dark Mode
-                  </span>
-                  <div className="relative">
-                    <div className={`w-11 h-6 rounded-full transition-colors ${dark ? 'bg-blue-600' : 'bg-gray-600'}`}></div>
-                    <div className={`absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform ${dark ? 'translate-x-5' : ''}`}></div>
+              {/* Navigation + Profile */}
+              <div className="mt-4 space-y-4">
+                {/* Nav list (top) */}
+                <nav className="flex flex-col gap-3" aria-label="Mobile site navigation">
+                  {navItems.map((s) => (
+                    <button
+                      key={s.id}
+                      onClick={() => handleNavClick(s.id)}
+                      className={`text-left py-3 px-3 rounded-lg transition-all font-medium flex items-center gap-3 ${
+                        activeSection === s.id
+                          ? "bg-blue-600 text-white shadow-lg"
+                          : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                      }`}
+                    >
+                      <span className="capitalize">{s.label}</span>
+                    </button>
+                  ))}
+                </nav>
+
+                {/* Profile center (big circle + name + dark toggle + title + bio + CTA) */}
+                <div className="flex flex-col items-center text-center mt-2 px-2">
+                  <div className="relative -mt-4">
+                    <img
+                      src="/img.jpeg"
+                      alt="Parth"
+                      className="w-36 h-36 rounded-full object-cover border-4 border-blue-600 shadow-xl"
+                    />
                   </div>
-                </button>
-              </div>
 
-              {/* Footer */}
-              <div className="p-4 text-center text-xs text-gray-500 border-t border-gray-700 mt-4">
-                <p className="font-semibold text-gray-400">Parth</p>
-                <p className="mt-1">Data Engineer</p>
-                <p className="mt-2">© 2025 All rights reserved</p>
+                  <h3 className="mt-4 text-3xl font-extrabold">Parth</h3>
+
+                  <div className="mt-2 flex items-center gap-2">
+                    <label className="inline-flex items-center gap-2 text-sm text-gray-300">
+                      <input
+                        type="checkbox"
+                        checked={dark}
+                        onChange={() => setDark((d) => !d)}
+                        className="w-4 h-4 rounded border-gray-500 bg-gray-700 focus:ring-2 focus:ring-blue-400"
+                        aria-label="Toggle dark mode"
+                      />
+                      <span>Dark mode</span>
+                    </label>
+                  </div>
+
+                  <p className="mt-2 text-blue-300 font-medium">Associate Data Engineer</p>
+
+                  <p className="mt-3 text-sm text-gray-300 max-w-[86%]">
+                    Specialized in Azure | Databricks | Python | SQL | PySpark. Building scalable data pipelines and analytics-ready datasets.
+                  </p>
+
+                  <div className="mt-5 w-full flex flex-col sm:flex-row gap-3 justify-center px-4">
+                    <button
+                      onClick={() => {
+                        onNavigate("projects");
+                        setOpen(false);
+                      }}
+                      className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-blue-700 transition"
+                    >
+                      <Briefcase size={16} />
+                      View My Work
+                    </button>
+
+                    <a
+                      href="/My_Data_Engineering_Resume-4.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto border border-gray-600 px-4 py-2 rounded-lg font-semibold inline-flex items-center justify-center gap-2 hover:border-white text-gray-200"
+                    >
+                      View Resume
+                    </a>
+                  </div>
+                </div>
+
+                {/* Contact short list */}
+                <div className="mt-4 px-2 space-y-2">
+                  <div className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg">
+                    <Mail className="text-blue-400 flex-shrink-0" size={16} />
+                    <span className="text-sm text-gray-300">parthsingh1253@gmail.com</span>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg">
+                    <Phone className="text-green-400 flex-shrink-0" size={16} />
+                    <span className="text-sm text-gray-300">+91 8527713603</span>
+                  </div>
+                </div>
+
+                {/* Footer small */}
+                <div className="mt-4 border-t border-gray-700 pt-3 text-center text-xs text-gray-500">
+                  <p className="font-semibold text-gray-400">Parth</p>
+                  <p className="mt-1">Associate Data Engineer</p>
+                  <p className="mt-2">© 2025 All rights reserved</p>
+                </div>
               </div>
-            </motion.div>
+            </motion.aside>
           </>
         )}
       </AnimatePresence>
     </>
   );
 }
+
