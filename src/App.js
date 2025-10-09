@@ -861,8 +861,9 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
   }, [open]);
 
   const handleNavClick = (section) => {
+    // navigate and close immediately for reliable mobile behavior
     onNavigate(section);
-    setTimeout(() => setOpen(false), 100);
+    setOpen(false);
   };
 
   return (
@@ -870,6 +871,7 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open menu"
+        aria-expanded={open}
         className="p-2.5 rounded-md bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 active:scale-95 transition-all z-50"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -887,8 +889,8 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[998]"
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[998]"
               onClick={() => setOpen(false)}
             />
             
@@ -899,6 +901,8 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               className="fixed right-0 top-0 bottom-0 w-[280px] bg-gray-900 shadow-2xl overflow-y-auto z-[999]"
+              role="dialog"
+              aria-modal="true"
             >
               {/* Header */}
               <div className="flex items-center justify-between p-5 border-b border-gray-700 bg-gray-800">
@@ -921,7 +925,7 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
               </div>
 
               {/* Navigation Links */}
-              <nav className="flex flex-col p-4 gap-2">
+              <nav className="flex flex-col p-4 gap-2" aria-label="Mobile site navigation">
                 {[
                   { id: "home", label: "Home", icon: "🏠" },
                   { id: "about", label: "About", icon: "👤" },
@@ -936,7 +940,7 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
                     className={`text-left py-3.5 px-4 rounded-lg transition-all font-medium flex items-center gap-3 ${
                       activeSection === section.id 
                         ? "bg-blue-600 text-white shadow-lg" 
-                        : "text-gray-300 hover:bg-gray-800 active:bg-gray-750"
+                        : "text-gray-300 hover:bg-gray-800 hover:text-white"
                     }`}
                   >
                     <span className="text-xl">{section.icon}</span>
@@ -949,7 +953,7 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
               <div className="p-4 border-t border-gray-700 mt-2">
                 <button
                   onClick={() => setDark((d) => !d)}
-                  className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-800 hover:bg-gray-750 transition-colors"
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors"
                 >
                   <span className="text-gray-300 font-medium flex items-center gap-2">
                     {dark ? <Moon size={18} /> : <Sun size={18} />}
