@@ -892,58 +892,58 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
       <AnimatePresence mode="wait">
         {open && (
           <>
-            {/* Backdrop */}
+            {/* Full screen backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[998]"
+              className="fixed inset-0 bg-gray-900 z-[998]"
               onClick={() => setOpen(false)}
+              style={{ zIndex: 998 }}
             />
 
-            {/* Menu Panel */}
+            {/* Full screen menu */}
             <motion.aside
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed right-0 top-0 bottom-0 w-[320px] sm:w-[360px] bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-800 shadow-2xl overflow-y-auto z-[999] p-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-800 overflow-y-auto z-[999] flex flex-col"
               role="dialog"
               aria-modal="true"
+              style={{ zIndex: 999, minHeight: '100vh', maxHeight: '100vh' }}
             >
-              {/* Header */}
-              <div className="flex items-center justify-between">
+              {/* Header with close button */}
+              <div className="flex items-center justify-between pt-4 pb-6 px-4">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center shadow">
                     <Database className="text-white" size={16} />
                   </div>
-                  <span className="text-white font-semibold">Parth</span>
+                  <span className="text-white font-semibold text-xl">Parth</span>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setOpen(false)}
-                    aria-label="Close menu"
-                    className="p-2 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors active:scale-95"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
-                </div>
+                <button
+                  onClick={() => setOpen(false)}
+                  aria-label="Close menu"
+                  className="p-2 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors active:scale-95"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
               </div>
 
-              {/* Navigation + Profile */}
-              <div className="mt-4 space-y-4">
-                {/* Nav list (top) */}
-                <nav className="flex flex-col gap-3" aria-label="Mobile site navigation">
+              {/* Full screen navigation */}
+              <div className="flex flex-col flex-grow px-4">
+                {/* Nav list (centered) */}
+                <nav className="flex flex-col gap-4 my-auto" aria-label="Mobile site navigation">
                   {navItems.map((s) => (
                     <button
                       key={s.id}
                       onClick={() => handleNavClick(s.id)}
-                      className={`text-left py-3 px-3 rounded-lg transition-all font-medium flex items-center gap-3 ${
+                      className={`text-left py-4 px-6 rounded-xl transition-all font-medium text-lg ${
                         activeSection === s.id
                           ? "bg-blue-600 text-white shadow-lg"
                           : "text-gray-300 hover:bg-gray-800 hover:text-white"
@@ -954,17 +954,17 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
                   ))}
                 </nav>
 
-                {/* Profile center (big circle + name + dark toggle + title + bio + CTA) */}
-                <div className="flex flex-col items-center text-center mt-2 px-2">
-                  <div className="relative -mt-4">
+                {/* Profile section at bottom */}
+                <div className="flex flex-col items-center text-center mt-8 px-4 pb-8">
+                  <div className="relative">
                     <img
                       src="/img.jpeg"
                       alt="Parth"
-                      className="w-36 h-36 rounded-full object-cover border-4 border-blue-600 shadow-xl"
+                      className="w-24 h-24 rounded-full object-cover border-4 border-blue-600 shadow-xl"
                     />
                   </div>
 
-                  <h3 className="mt-4 text-3xl font-extrabold">Parth</h3>
+                  <h3 className="mt-4 text-2xl font-extrabold">Parth</h3>
 
                   <div className="mt-2 flex items-center gap-2">
                     <label className="inline-flex items-center gap-2 text-sm text-gray-300">
@@ -985,15 +985,15 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
                     Specialized in Azure | Databricks | Python | SQL | PySpark. Building scalable data pipelines and analytics-ready datasets.
                   </p>
 
-                  <div className="mt-5 w-full flex flex-col sm:flex-row gap-3 justify-center px-4">
+                  <div className="mt-6 w-full flex flex-col sm:flex-row gap-3 justify-center px-4">
                     <button
                       onClick={() => {
                         onNavigate("projects");
                         setOpen(false);
                       }}
-                      className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-blue-700 transition"
+                      className="w-full sm:w-auto bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-blue-700 transition"
                     >
-                      <Briefcase size={16} />
+                      <Briefcase size={18} />
                       View My Work
                     </button>
 
@@ -1001,31 +1001,31 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
                       href="/My_Data_Engineering_Resume-4.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto border border-gray-600 px-4 py-2 rounded-lg font-semibold inline-flex items-center justify-center gap-2 hover:border-white text-gray-200"
+                      className="w-full sm:w-auto border border-gray-600 px-6 py-3 rounded-lg font-semibold inline-flex items-center justify-center gap-2 hover:border-white text-gray-200"
                     >
                       View Resume
                     </a>
                   </div>
-                </div>
 
-                {/* Contact short list */}
-                <div className="mt-4 px-2 space-y-2">
-                  <div className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg">
-                    <Mail className="text-blue-400 flex-shrink-0" size={16} />
-                    <span className="text-sm text-gray-300">parthsingh1253@gmail.com</span>
+                  {/* Contact info */}
+                  <div className="mt-6 px-2 space-y-3 w-full max-w-md">
+                    <div className="flex items-center gap-4 p-4 bg-gray-800 rounded-lg">
+                      <Mail className="text-blue-400 flex-shrink-0" size={20} />
+                      <span className="text-gray-300">parthsingh1253@gmail.com</span>
+                    </div>
+
+                    <div className="flex items-center gap-4 p-4 bg-gray-800 rounded-lg">
+                      <Phone className="text-green-400 flex-shrink-0" size={20} />
+                      <span className="text-gray-300">+91 8527713603</span>
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg">
-                    <Phone className="text-green-400 flex-shrink-0" size={16} />
-                    <span className="text-sm text-gray-300">+91 8527713603</span>
+                  {/* Footer */}
+                  <div className="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
+                    <p className="font-semibold text-gray-400">Parth</p>
+                    <p className="mt-1">Associate Data Engineer</p>
+                    <p className="mt-3">© 2025 All rights reserved</p>
                   </div>
-                </div>
-
-                {/* Footer small */}
-                <div className="mt-4 border-t border-gray-700 pt-3 text-center text-xs text-gray-500">
-                  <p className="font-semibold text-gray-400">Parth</p>
-                  <p className="mt-1">Associate Data Engineer</p>
-                  <p className="mt-2">© 2025 All rights reserved</p>
                 </div>
               </div>
             </motion.aside>
@@ -1035,4 +1035,3 @@ function MobileMenu({ onNavigate, activeSection, dark, setDark }) {
     </>
   );
 }
-
